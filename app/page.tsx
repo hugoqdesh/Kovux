@@ -19,17 +19,19 @@ export default function Home() {
 				<Header />
 			</header>
 
-			<main className="flex flex-col items-center justify-center h-[45rem] text-center px-6 md:px-0">
-				<div className="flex flex-col gap-4 mb-4 max-w-2xl">
-					<h1 className="text-3xl md:text-4xl font-semibold">
+			<main className="flex flex-col items-center justify-center mt-[15rem] text-center px-6 md:px-0">
+				<div className="flex flex-col gap-4 mb-4">
+					<h1 className="text-4xl md:text-5xl font-semibold">
 						Clean finance for clear minds
 					</h1>
-					<p className="text-muted-foreground text-sm md:text-base">
-						Skip the spreadsheets and complexity. Automatically{" "}
+					<p className="text-muted-foreground text-sm max-w-2xl">
+						Kovux is an open-source finance manager with features that allow you
+						to make better decisions while being minimal and no spreadsheets
+						{/* Skip the spreadsheets and complexity. Automatically{" "}
 						<span className="text-primary">track</span>,{" "}
 						<span className="text-primary">understand</span>, and{" "}
 						<span className="text-primary">control</span> your income/expenses.
-						All from one clean, modern open-source place.
+						All from one clean, modern open-source place. */}
 					</p>
 				</div>
 

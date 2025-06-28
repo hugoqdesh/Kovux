@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
-import { Mail } from "lucide-react";
+import { Mail, Send } from "lucide-react";
 import axios from "axios";
 import { z } from "zod";
 
@@ -44,16 +44,21 @@ export default function Waitlist() {
 					type="email"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
-					className="peer pe-9"
+					className="peer ps-9"
 					placeholder="Enter email"
 					required
 				/>
-				<div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 end-0 flex items-center justify-center pe-3 peer-disabled:opacity-50">
+				<div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
 					<Mail size={16} aria-hidden="true" />
 				</div>
 			</div>
-			<Button onClick={createWaitlistUser} type="submit" variant="outline">
-				Join Waitlist
+			<Button
+				onClick={createWaitlistUser}
+				type="submit"
+				variant="outline"
+				size="icon"
+			>
+				<Send />
 			</Button>
 		</form>
 	);

@@ -19,17 +19,17 @@ export default function Counter() {
 	}, []);
 
 	return (
-		<p className="text-muted-foreground font-semibold text-xs md:text-sm">
+		<p className="text-muted-foreground text-sm md:text-sm">
 			Join{" "}
 			<AnimatedNumber
-				className="text-primary"
+				className="text-primary font-semibold"
 				springOptions={{
 					bounce: 0,
 					duration: 2000,
 				}}
 				value={value}
 			/>{" "}
-			others getting first access and <br /> special launch day benefits
+			others to get early benefits
 		</p>
 	);
 }
