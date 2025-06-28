@@ -20,7 +20,7 @@ export default function Home() {
 			</header>
 
 			<main className="flex flex-col items-center justify-center mt-[15rem] text-center px-6 md:px-0">
-				<div className="flex flex-col gap-4 mb-4">
+				<div className="flex flex-col gap-2 mb-4">
 					<h1 className="text-4xl md:text-5xl font-semibold">
 						Clean finance for clear minds
 					</h1>
