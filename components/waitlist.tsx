@@ -34,6 +34,7 @@ export default function Waitlist() {
 		} catch (err) {
 			toast.error("Something went wrong, try again!", {
 				richColors: true,
+				description: "You might've been rate limited.",
 			});
 		}
 	}
