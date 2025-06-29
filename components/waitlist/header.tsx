@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import Link from "next/link";
-import { ModeToggle } from "./mode-toggle";
+import { ModeToggle } from "../mode-toggle";
 import { Coins, Github } from "lucide-react";
 
 export default function Header() {

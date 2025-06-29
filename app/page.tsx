@@ -1,7 +1,7 @@
-import Counter from "@/components/counter";
-import Header from "@/components/header";
+import Counter from "@/components/waitlist/counter";
+import Header from "@/components/waitlist/header";
 import { DotPattern } from "@/components/ui/dot-pattern";
-import Waitlist from "@/components/waitlist";
+import Waitlist from "@/components/waitlist/waitlist";
 
 export default function Home() {
 	return (

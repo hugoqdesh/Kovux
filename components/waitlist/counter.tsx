@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { AnimatedNumber } from "./ui/animated-number";
+import { AnimatedNumber } from "../ui/animated-number";
 import axios from "axios";
 
 export default function Counter() {
