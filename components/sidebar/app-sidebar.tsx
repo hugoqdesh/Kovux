@@ -2,8 +2,8 @@
 
 import {
 	ArrowLeftRight,
+	BadgePlus,
 	ChartPie,
-	CirclePlus,
 	Coins,
 	HeartHandshake,
 	House,
@@ -49,7 +49,7 @@ const data = {
 			icon: ArrowLeftRight,
 		},
 		{
-			title: "Reports",
+			title: "Insights",
 			url: "/dashboard/reports",
 			icon: ChartPie,
 		},
@@ -90,15 +90,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 							className="data-[slot=sidebar-menu-button]:!p-1.5"
 						>
 							<a href="#">
-								<Coins className="!size-5" />
+								<Coins className="!size-5 text-brand" />
 								<span className="text-base font-semibold">Kovux</span>
 							</a>
 						</SidebarMenuButton>
 					</SidebarMenuItem>
 				</SidebarMenu>
-				<Button className="h-8">
-					<CirclePlus />
-					<span>Quick Transaction</span>
+
+				<Button variant="outline" size="sm">
+					<BadgePlus className="-ms-1" />
+					Quick Transaction
 				</Button>
 			</SidebarHeader>
 			<SidebarContent>

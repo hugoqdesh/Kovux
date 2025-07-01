@@ -26,7 +26,10 @@ export function NavBottom({
 				<SidebarMenu>
 					{items.map((item) => (
 						<SidebarMenuItem key={item.title}>
-							<SidebarMenuButton asChild>
+							<SidebarMenuButton
+								asChild
+								className="hover:text-brand transition-colors duration-200"
+							>
 								<Link href={item.url}>
 									<item.icon />
 									<span>{item.title}</span>

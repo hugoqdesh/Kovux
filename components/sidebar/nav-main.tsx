@@ -27,7 +27,11 @@ export function NavMain({
 				<SidebarMenu>
 					{items.map((item) => (
 						<SidebarMenuItem key={item.title}>
-							<SidebarMenuButton tooltip={item.title} asChild>
+							<SidebarMenuButton
+								tooltip={item.title}
+								asChild
+								className="hover:text-brand transition-colors duration-200"
+							>
 								<Link href={item.url}>
 									{item.icon && <item.icon />}
 									<span>{item.title}</span>

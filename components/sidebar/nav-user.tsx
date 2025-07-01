@@ -6,7 +6,6 @@ import {
 	DropdownMenuContent,
 	DropdownMenuGroup,
 	DropdownMenuItem,
-	DropdownMenuLabel,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -16,13 +15,7 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@/components/ui/sidebar";
-import {
-	CircleUserRound,
-	EllipsisVertical,
-	House,
-	HouseIcon,
-	LogOut,
-} from "lucide-react";
+import { CircleUserRound, EllipsisVertical, House, LogOut } from "lucide-react";
 import Link from "next/link";
 
 export function NavUser({
