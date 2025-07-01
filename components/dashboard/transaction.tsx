@@ -24,6 +24,7 @@ import {
 import {
 	Activity,
 	Apple,
+	BadgePlus,
 	Banknote,
 	BanknoteArrowDown,
 	BanknoteArrowUp,
@@ -36,6 +37,7 @@ import {
 	House,
 	IdCard,
 	LibraryBig,
+	PiggyBank,
 	Plane,
 	ReceiptText,
 	Send,
@@ -45,10 +47,24 @@ import {
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { toast } from "sonner";
+import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "../ui/dialog";
+import { Label } from "../ui/label";
 
 const formSchema = z.object({
 	amount: z.coerce.number().positive(),
 	payment: z.string({ required_error: "Please select a payment method" }),
+	type: z.string({
+		required_error: "Please select a type",
+	}),
 	note: z.string().max(50).optional(),
 	category: z.string({
 		required_error: "Please select a category",
@@ -77,11 +93,12 @@ function Transaction() {
 			};
 
 			console.log(payload);
-			toast.success("Event has been created", {
+			toast.success("New transaction made", {
 				richColors: true,
 			});
+
+			form.reset();
 		} catch (error) {
-			console.log("Form submission error", error);
 			toast.error("Something went wrong!", {
 				richColors: true,
 			});
@@ -89,31 +106,18 @@ function Transaction() {
 	}
 
 	return (
-		<Tabs
-			value={entryType}
-			onValueChange={(val) => setEntryType(val as "expense" | "income")}
-			defaultValue="expense"
-			className="max-w-xl mx-auto w-full space-y-6"
-		>
-			<TabsList>
-				<TabsTrigger value="expense">
-					<BanknoteArrowDown
-						className="-ms-0.5 me-0.5 opacity-60"
-						size={16}
-						aria-hidden="true"
-					/>
-					Expense
-				</TabsTrigger>
-				<TabsTrigger value="income">
-					<BanknoteArrowUp
-						className="-ms-0.5 me-0.5 opacity-60"
-						size={16}
-						aria-hidden="true"
-					/>
-					Income
-				</TabsTrigger>
-			</TabsList>
-			<TabsContent value="expense">
+		<Dialog>
+			<DialogTrigger asChild>
+				<Button variant="outline" size="sm" className="w-full">
+					<BadgePlus className="-ms-1" />
+					Quick Transaction
+				</Button>
+			</DialogTrigger>
+			<DialogContent className="sm:max-w-[425px]">
+				<DialogHeader>
+					<DialogTitle>Add Transaction</DialogTitle>
+					<DialogDescription>Make a new income/expense</DialogDescription>
+				</DialogHeader>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 						<FormField
@@ -130,7 +134,7 @@ function Transaction() {
 												type="number"
 												{...field}
 											/>
-											<div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
+											<div className="text-brand pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
 												<DollarSign size={16} aria-hidden="true" />
 											</div>
 										</div>
@@ -156,17 +160,76 @@ function Transaction() {
 											</SelectTrigger>
 										</FormControl>
 										<SelectContent>
-											<SelectItem value="credit card">
-												<CreditCard size={16} aria-hidden="true" />
-												<span className="truncate">Credit Card</span>
+											<SelectItem value="cash">
+												<Banknote
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
+												<span className="truncate">Cash</span>
 											</SelectItem>
 											<SelectItem value="debit card">
-												<IdCard size={16} aria-hidden="true" />
+												<IdCard
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Debit Card</span>
 											</SelectItem>
-											<SelectItem value="cash">
-												<Banknote size={16} aria-hidden="true" />
-												<span className="truncate">Cash</span>
+											<SelectItem value="credit card">
+												<CreditCard
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
+												<span className="truncate">Credit Card</span>
+											</SelectItem>
+											<SelectItem value="savings account">
+												<PiggyBank
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
+												<span className="truncate">Savings Account</span>
+											</SelectItem>
+										</SelectContent>
+									</Select>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name="type"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Type</FormLabel>
+									<Select
+										onValueChange={field.onChange}
+										defaultValue={field.value}
+									>
+										<FormControl className="w-full">
+											<SelectTrigger>
+												<SelectValue placeholder="Choose a payment method" />
+											</SelectTrigger>
+										</FormControl>
+										<SelectContent>
+											<SelectItem value="income">
+												<BanknoteArrowUp
+													size={16}
+													aria-hidden="true"
+													className="text-brand-green"
+												/>
+												<span className="truncate">Income</span>
+											</SelectItem>
+											<SelectItem value="expense">
+												<BanknoteArrowDown
+													size={16}
+													aria-hidden="true"
+													className="text-brand-red"
+												/>
+												<span className="truncate">Expense</span>
 											</SelectItem>
 										</SelectContent>
 									</Select>
@@ -206,55 +269,107 @@ function Transaction() {
 										</FormControl>
 										<SelectContent>
 											<SelectItem value="food & drink">
-												<Wine size={16} aria-hidden="true" />
+												<Wine
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Food & Drink</span>
 											</SelectItem>
 											<SelectItem value="shopping">
-												<ShoppingBag size={16} aria-hidden="true" />
+												<ShoppingBag
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Shopping</span>
 											</SelectItem>
 											<SelectItem value="transport">
-												<TrainFront size={16} aria-hidden="true" />
+												<TrainFront
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Transport</span>
 											</SelectItem>
 											<SelectItem value="home">
-												<House size={16} aria-hidden="true" />
+												<House
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Home</span>
 											</SelectItem>
 											<SelectItem value="bills & fees">
-												<ReceiptText size={16} aria-hidden="true" />
+												<ReceiptText
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Bills & Fees</span>
 											</SelectItem>
 											<SelectItem value="entertainment">
-												<Drama size={16} aria-hidden="true" />
+												<Drama
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Entertainment</span>
 											</SelectItem>
 											<SelectItem value="travel">
-												<Plane size={16} aria-hidden="true" />
+												<Plane
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Travel</span>
 											</SelectItem>
 											<SelectItem value="healthcare">
-												<Activity size={16} aria-hidden="true" />
+												<Activity
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Healthcare</span>
 											</SelectItem>
 											<SelectItem value="education">
-												<LibraryBig size={16} aria-hidden="true" />
+												<LibraryBig
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Education</span>
 											</SelectItem>
 											<SelectItem value="groceries">
-												<Apple size={16} aria-hidden="true" />
+												<Apple
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Groceries</span>
 											</SelectItem>
 											<SelectItem value="gifts">
-												<Gift size={16} aria-hidden="true" />
+												<Gift
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Gifts</span>
 											</SelectItem>
 											<SelectItem value="beauty">
-												<EyeClosed size={16} aria-hidden="true" />
+												<EyeClosed
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Beauty</span>
 											</SelectItem>
 											<SelectItem value="business">
-												<BriefcaseBusiness size={16} aria-hidden="true" />
+												<BriefcaseBusiness
+													size={16}
+													aria-hidden="true"
+													className="text-brand"
+												/>
 												<span className="truncate">Business</span>
 											</SelectItem>
 										</SelectContent>
@@ -263,130 +378,19 @@ function Transaction() {
 								</FormItem>
 							)}
 						/>
-						<Button variant="secondary" type="submit">
-							<Send className="-ms-1" />
-							Submit
-						</Button>
+						<DialogFooter>
+							<DialogClose asChild>
+								<Button variant="outline">Cancel</Button>
+							</DialogClose>
+							<Button variant="outline" type="submit">
+								<Send className="-ms-1 text-brand" />
+								Submit
+							</Button>
+						</DialogFooter>
 					</form>
 				</Form>
-			</TabsContent>
-			<TabsContent value="income">
-				<Form {...form}>
-					<form
-						onSubmit={form.handleSubmit(onSubmit)}
-						className="space-y-8 max-w-xl mx-auto w-full"
-					>
-						<FormField
-							control={form.control}
-							name="amount"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Amount</FormLabel>
-									<FormControl>
-										<div className="relative">
-											<Input
-												className="peer ps-9"
-												placeholder="0.00"
-												type="number"
-												{...field}
-											/>
-											<div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
-												<DollarSign size={16} aria-hidden="true" />
-											</div>
-										</div>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-
-						<FormField
-							control={form.control}
-							name="payment"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Payment Method</FormLabel>
-									<Select
-										onValueChange={field.onChange}
-										defaultValue={field.value}
-									>
-										<FormControl className="w-full">
-											<SelectTrigger>
-												<SelectValue placeholder="Choose a payment method" />
-											</SelectTrigger>
-										</FormControl>
-										<SelectContent>
-											<SelectItem value="credit card">
-												<CreditCard size={16} aria-hidden="true" />
-												<span className="truncate">Credit Card</span>
-											</SelectItem>
-											<SelectItem value="debit card">
-												<IdCard size={16} aria-hidden="true" />
-												<span className="truncate">Debit Card</span>
-											</SelectItem>
-											<SelectItem value="cash">
-												<Banknote size={16} aria-hidden="true" />
-												<span className="truncate">Cash</span>
-											</SelectItem>
-										</SelectContent>
-									</Select>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-
-						<FormField
-							control={form.control}
-							name="note"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Note (optional)</FormLabel>
-									<FormControl>
-										<Input type="text" {...field} />
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-
-						<FormField
-							control={form.control}
-							name="category"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Category</FormLabel>
-									<Select
-										onValueChange={field.onChange}
-										defaultValue={field.value}
-									>
-										<FormControl className="w-full">
-											<SelectTrigger>
-												<SelectValue placeholder="Choose a category" />
-											</SelectTrigger>
-										</FormControl>
-										<SelectContent>
-											<SelectItem value="salary">
-												<BanknoteArrowUp size={16} aria-hidden="true" />
-												<span className="truncate">Salary</span>
-											</SelectItem>
-											<SelectItem value="gift">
-												<Gift size={16} aria-hidden="true" />
-												<span className="truncate">Gift</span>
-											</SelectItem>
-										</SelectContent>
-									</Select>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-						<Button variant="secondary" type="submit">
-							<Send className="-ms-1" />
-							Submit
-						</Button>
-					</form>
-				</Form>
-			</TabsContent>
-		</Tabs>
+			</DialogContent>
+		</Dialog>
 	);
 }
 

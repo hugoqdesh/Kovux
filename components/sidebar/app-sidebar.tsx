@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import Transaction from "../dashboard/transaction";
 
 const data = {
 	user: {
@@ -93,12 +94,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 					</SidebarMenuItem>
 				</SidebarMenu>
 
-				<Link href="/dashboard/transaction">
-					<Button variant="outline" size="sm" className="w-full">
-						<BadgePlus className="-ms-1" />
-						Quick Transaction
-					</Button>
-				</Link>
+				<div className="hidden md:block">
+					<Transaction />
+				</div>
 			</SidebarHeader>
 			<SidebarContent>
 				<NavMain items={data.navMain} />

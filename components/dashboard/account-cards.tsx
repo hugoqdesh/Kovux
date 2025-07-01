@@ -11,6 +11,7 @@ import {
 	Activity,
 	Banknote,
 	CreditCard,
+	IdCard,
 	PiggyBank,
 	Tickets,
 } from "lucide-react";
@@ -37,6 +38,23 @@ function AccountCards() {
 					</CardHeader>
 					<CardContent>
 						<span className="text-xl font-semibold">$220.00</span>
+					</CardContent>
+				</Card>
+
+				<Card>
+					<CardHeader>
+						<CardTitle className="flex items-center gap-1.5">
+							<IdCard size={20} className="text-brand" />
+							Debit Card
+						</CardTitle>
+						<CardAction className="text-xs">
+							<Badge variant="outline" className="text-brand-green">
+								+9.8%
+							</Badge>
+						</CardAction>
+					</CardHeader>
+					<CardContent>
+						<span className="text-xl font-semibold">$674.32</span>
 					</CardContent>
 				</Card>
 
@@ -71,23 +89,6 @@ function AccountCards() {
 					</CardHeader>
 					<CardContent>
 						<span className="text-xl font-semibold">$500.00</span>
-					</CardContent>
-				</Card>
-
-				<Card>
-					<CardHeader>
-						<CardTitle className="flex items-center gap-1.5">
-							<Activity size={20} className="text-brand" />
-							Health Savings Account
-						</CardTitle>
-						<CardAction className="text-xs">
-							<Badge variant="outline" className="text-brand-green">
-								+9.8%
-							</Badge>
-						</CardAction>
-					</CardHeader>
-					<CardContent>
-						<span className="text-xl font-semibold">$400.00</span>
 					</CardContent>
 				</Card>
 			</div>
