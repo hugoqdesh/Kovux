@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { CreditCard } from "lucide-react";
+import { CreditCard, Layers2 } from "lucide-react";
 import { Badge } from "../ui/badge";
 
 function BalanceCard() {
@@ -8,7 +8,7 @@ function BalanceCard() {
 		<Card>
 			<CardHeader className="flex items-center gap-2 space-y-0 border-b py-2 sm:flex-row">
 				<CardTitle className="flex items-center gap-1.5">
-					<CreditCard /> Total Balance
+					<Layers2 size={20} className="text-brand" /> Total Balance
 				</CardTitle>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3 xl:mt-36">

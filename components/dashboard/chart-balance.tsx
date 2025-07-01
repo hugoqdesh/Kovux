@@ -146,7 +146,7 @@ export function ChartBalance() {
 		<Card className="pt-0">
 			<CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
 				<CardTitle className="flex items-center gap-1.5">
-					<Wallet size={20} />
+					<Wallet size={20} className="text-brand" />
 					Account balance
 				</CardTitle>
 				<Select value={timeRange} onValueChange={setTimeRange}>

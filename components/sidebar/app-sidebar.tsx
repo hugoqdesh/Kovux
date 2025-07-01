@@ -40,11 +40,6 @@ const data = {
 			icon: House,
 		},
 		{
-			title: "Accounts",
-			url: "/dashboard/accounts",
-			icon: Tickets,
-		},
-		{
 			title: "Transactions",
 			url: "/dashboard/transactions",
 			icon: ArrowLeftRight,
