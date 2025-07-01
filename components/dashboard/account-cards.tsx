@@ -17,7 +17,6 @@ function AccountCards() {
 					<CardHeader>
 						<CardTitle className="flex items-center gap-1.5">Cash</CardTitle>
 						<CardAction className="text-xs">
-							{/* +$209.46 */}
 							<Badge variant="outline" className="text-brand-green">
 								+9.8%
 							</Badge>
@@ -46,10 +45,12 @@ function AccountCards() {
 
 				<Card>
 					<CardHeader>
-						<CardTitle className="flex items-center gap-1.5">Savings</CardTitle>
+						<CardTitle className="flex items-center gap-1.5">
+							Investments
+						</CardTitle>
 						<CardAction className="text-xs">
-							<Badge variant="outline" className="text-brand-red">
-								-9.8%
+							<Badge variant="outline" className="text-brand-green">
+								+9.8%
 							</Badge>
 						</CardAction>
 					</CardHeader>
@@ -60,12 +61,10 @@ function AccountCards() {
 
 				<Card>
 					<CardHeader>
-						<CardTitle className="flex items-center gap-1.5">
-							Investments
-						</CardTitle>
+						<CardTitle className="flex items-center gap-1.5">Loans</CardTitle>
 						<CardAction className="text-xs">
-							<Badge variant="outline" className="text-brand-green">
-								+9.8%
+							<Badge variant="outline" className="text-brand-red">
+								-9.8%
 							</Badge>
 						</CardAction>
 					</CardHeader>

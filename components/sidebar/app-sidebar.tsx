@@ -25,6 +25,7 @@ import {
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const data = {
 	user: {
@@ -89,18 +90,20 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 							asChild
 							className="data-[slot=sidebar-menu-button]:!p-1.5"
 						>
-							<a href="#">
+							<Link href="/dashboard">
 								<Coins className="!size-5 text-brand" />
 								<span className="text-base font-semibold">Kovux</span>
-							</a>
+							</Link>
 						</SidebarMenuButton>
 					</SidebarMenuItem>
 				</SidebarMenu>
 
-				<Button variant="outline" size="sm">
-					<BadgePlus className="-ms-1" />
-					Quick Transaction
-				</Button>
+				<Link href="/dashboard/transaction">
+					<Button variant="outline" size="sm" className="w-full">
+						<BadgePlus className="-ms-1" />
+						Quick Transaction
+					</Button>
+				</Link>
 			</SidebarHeader>
 			<SidebarContent>
 				<NavMain items={data.navMain} />
