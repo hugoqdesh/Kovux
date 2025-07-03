@@ -8,15 +8,17 @@ datasource db {
 }
 
 model User {
-  id            String    @id @map("_id")
-  name          String
-  email         String
-  emailVerified Boolean
-  image         String?
-  createdAt     DateTime
-  updatedAt     DateTime
-  sessions      Session[]
-  accounts      Account[]
+  id                   String                 @id @map("_id")
+  name                 String
+  email                String
+  emailVerified        Boolean
+  image                String?
+  createdAt            DateTime
+  updatedAt            DateTime
+  sessions             Session[]
+  accounts             Account[]
+  FinancialTransaction FinancialTransaction[]
+  AccountBalance       AccountBalance[]
 
   @@unique([email])
   @@map("user")
@@ -74,4 +76,40 @@ model WaitlistUser {
   updatedAt DateTime @default(now()) @updatedAt
 
   @@map("waitlist_users")
+}
+
+model FinancialTransaction {
+  id        String          @id @default(cuid()) @map("_id")
+  method    PaymentMethod
+  amount    Float
+  type      TransactionType
+  note      String?
+  category  String
+  createdAt DateTime        @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AccountBalance {
+  id     String        @id @default(cuid()) @map("_id")
+  method PaymentMethod
+  amount Float
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, method], name: "userId_method")
+}
+
+enum PaymentMethod {
+  CASH
+  DEBIT_CARD
+  CREDIT_CARD
+  SAVINGS_ACCOUNT
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
 }

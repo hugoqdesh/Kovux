@@ -45,7 +45,6 @@ import {
 	TrainFront,
 	Wine,
 } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { toast } from "sonner";
 import {
 	Dialog,
@@ -57,7 +56,8 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "../ui/dialog";
-import { Label } from "../ui/label";
+import axios from "axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const formSchema = z.object({
 	amount: z.coerce.number().positive(),
@@ -72,38 +72,40 @@ const formSchema = z.object({
 });
 
 function Transaction() {
-	const [entryType, setEntryType] = useState<"expense" | "income">("expense");
-
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
-		defaultValues: {
-			amount: 0,
-			note: "",
+	});
+
+	const queryClient = useQueryClient();
+
+	const mutation = useMutation({
+		mutationFn: async (payload: any) => {
+			const res = await axios.post("/api/transaction", payload);
+			return res.data;
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["accounts"] });
+			toast.success("New transaction made", { richColors: true });
+			form.reset();
+		},
+		onError: () => {
+			toast.error("Something went wrong!", { richColors: true });
 		},
 	});
 
-	function onSubmit(values: z.infer<typeof formSchema>) {
-		try {
-			const formattedAmount = parseFloat(values.amount.toString()).toFixed(2);
+	const onSubmit = (values: z.infer<typeof formSchema>) => {
+		const formattedAmount = parseFloat(values.amount.toString()).toFixed(2);
 
-			const payload = {
-				...values,
-				amount: parseFloat(formattedAmount),
-				type: entryType,
-			};
+		const payload = {
+			amount: parseFloat(formattedAmount),
+			method: values.payment,
+			type: values.type,
+			note: values.note,
+			category: values.category,
+		};
 
-			console.log(payload);
-			toast.success("New transaction made", {
-				richColors: true,
-			});
-
-			form.reset();
-		} catch (error) {
-			toast.error("Something went wrong!", {
-				richColors: true,
-			});
-		}
-	}
+		mutation.mutate(payload);
+	};
 
 	return (
 		<Dialog>
@@ -133,6 +135,7 @@ function Transaction() {
 												placeholder="0.00"
 												type="number"
 												{...field}
+												value={field.value ?? ""}
 											/>
 											<div className="text-brand pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
 												<DollarSign size={16} aria-hidden="true" />
@@ -153,6 +156,7 @@ function Transaction() {
 									<Select
 										onValueChange={field.onChange}
 										defaultValue={field.value}
+										value={field.value ?? ""}
 									>
 										<FormControl className="w-full">
 											<SelectTrigger>
@@ -160,7 +164,7 @@ function Transaction() {
 											</SelectTrigger>
 										</FormControl>
 										<SelectContent>
-											<SelectItem value="cash">
+											<SelectItem value="CASH">
 												<Banknote
 													size={16}
 													aria-hidden="true"
@@ -168,7 +172,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Cash</span>
 											</SelectItem>
-											<SelectItem value="debit card">
+											<SelectItem value="DEBIT_CARD">
 												<IdCard
 													size={16}
 													aria-hidden="true"
@@ -176,7 +180,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Debit Card</span>
 											</SelectItem>
-											<SelectItem value="credit card">
+											<SelectItem value="CREDIT_CARD">
 												<CreditCard
 													size={16}
 													aria-hidden="true"
@@ -184,7 +188,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Credit Card</span>
 											</SelectItem>
-											<SelectItem value="savings account">
+											<SelectItem value="SAVINGS_ACCOUNT">
 												<PiggyBank
 													size={16}
 													aria-hidden="true"
@@ -208,6 +212,7 @@ function Transaction() {
 									<Select
 										onValueChange={field.onChange}
 										defaultValue={field.value}
+										value={field.value ?? ""}
 									>
 										<FormControl className="w-full">
 											<SelectTrigger>
@@ -215,7 +220,7 @@ function Transaction() {
 											</SelectTrigger>
 										</FormControl>
 										<SelectContent>
-											<SelectItem value="income">
+											<SelectItem value="INCOME">
 												<BanknoteArrowUp
 													size={16}
 													aria-hidden="true"
@@ -223,7 +228,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Income</span>
 											</SelectItem>
-											<SelectItem value="expense">
+											<SelectItem value="EXPENSE">
 												<BanknoteArrowDown
 													size={16}
 													aria-hidden="true"
@@ -245,7 +250,7 @@ function Transaction() {
 								<FormItem>
 									<FormLabel>Note (optional)</FormLabel>
 									<FormControl>
-										<Input type="text" {...field} />
+										<Input type="text" {...field} value={field.value ?? ""} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -261,6 +266,7 @@ function Transaction() {
 									<Select
 										onValueChange={field.onChange}
 										defaultValue={field.value}
+										value={field.value ?? ""}
 									>
 										<FormControl className="w-full">
 											<SelectTrigger>
@@ -384,7 +390,7 @@ function Transaction() {
 							</DialogClose>
 							<Button variant="outline" type="submit">
 								<Send className="-ms-1 text-brand" />
-								Submit
+								{mutation.isPending ? "Submitting..." : "Submit"}
 							</Button>
 						</DialogFooter>
 					</form>

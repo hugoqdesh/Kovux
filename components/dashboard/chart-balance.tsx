@@ -226,7 +226,7 @@ export function ChartBalance() {
 
 						<Area
 							dataKey="balance"
-							type="step"
+							type="natural"
 							fill="url(#fillDesktop)"
 							stroke="var(--color-balance)"
 							stackId="a"
