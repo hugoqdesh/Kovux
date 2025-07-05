@@ -19,18 +19,25 @@ import { CircleUserRound, EllipsisVertical, House, LogOut } from "lucide-react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { Skeleton } from "../ui/skeleton";
 
-export function NavUser({
-	user,
-}: {
-	user: {
-		name: string;
-		email: string;
-		avatar: string;
-	};
-}) {
+export function NavUser() {
 	const { isMobile } = useSidebar();
 	const router = useRouter();
+
+	const { data, isPending } = useQuery({
+		queryKey: ["user"],
+		queryFn: async () => {
+			const res = await axios.get("/api/user");
+			return res.data;
+		},
+	});
+
+	if (isPending) {
+		return <Skeleton className="h-[45px] w-full" />;
+	}
 
 	return (
 		<SidebarMenu>
@@ -39,16 +46,16 @@ export function NavUser({
 					<DropdownMenuTrigger asChild>
 						<SidebarMenuButton
 							size="lg"
-							className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+							className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground mt-2"
 						>
 							<Avatar className="h-8 w-8 rounded-lg">
-								<AvatarImage src={user.avatar} alt={user.name} />
+								<AvatarImage src={data.image} alt={data.name} />
 								<AvatarFallback className="rounded-lg"></AvatarFallback>
 							</Avatar>
 							<div className="grid flex-1 text-left text-sm leading-tight">
-								<span className="truncate font-medium">{user.name}</span>
+								<span className="truncate font-medium">{data.name}</span>
 								<span className="text-muted-foreground truncate text-xs">
-									{user.email}
+									{data.email}
 								</span>
 							</div>
 							<EllipsisVertical className="ml-auto size-4" />
