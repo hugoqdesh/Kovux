@@ -2,14 +2,12 @@
 
 import {
 	ArrowLeftRight,
-	BadgePlus,
 	ChartPie,
 	Coins,
 	HeartHandshake,
 	House,
 	Mailbox,
 	Send,
-	Tickets,
 	WalletCards,
 } from "lucide-react";
 import { NavMain } from "@/components/sidebar/nav-main";
@@ -24,16 +22,10 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Button } from "../ui/button";
 import Link from "next/link";
 import Transaction from "../dashboard/transaction";
 
 const data = {
-	user: {
-		name: "hugoqdesh",
-		email: "m@example.com",
-		avatar: "demo-pfp.png",
-	},
 	navMain: [
 		{
 			title: "Dashboard",
@@ -103,7 +95,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				<NavBottom items={data.navBottom} className="mt-auto" />
 			</SidebarContent>
 			<SidebarFooter>
-				<NavUser user={data.user} />
+				<NavUser />
 			</SidebarFooter>
 		</Sidebar>
 	);
