@@ -135,6 +135,7 @@ function Transaction() {
 												placeholder="0.00"
 												type="number"
 												{...field}
+												disabled={mutation.isPending}
 												value={field.value ?? ""}
 											/>
 											<div className="text-brand pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
@@ -156,6 +157,7 @@ function Transaction() {
 									<Select
 										onValueChange={field.onChange}
 										defaultValue={field.value}
+										disabled={mutation.isPending}
 										value={field.value ?? ""}
 									>
 										<FormControl className="w-full">
@@ -212,6 +214,7 @@ function Transaction() {
 									<Select
 										onValueChange={field.onChange}
 										defaultValue={field.value}
+										disabled={mutation.isPending}
 										value={field.value ?? ""}
 									>
 										<FormControl className="w-full">
@@ -250,7 +253,12 @@ function Transaction() {
 								<FormItem>
 									<FormLabel>Note (optional)</FormLabel>
 									<FormControl>
-										<Input type="text" {...field} value={field.value ?? ""} />
+										<Input
+											type="text"
+											{...field}
+											disabled={mutation.isPending}
+											value={field.value ?? ""}
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -266,6 +274,7 @@ function Transaction() {
 									<Select
 										onValueChange={field.onChange}
 										defaultValue={field.value}
+										disabled={mutation.isPending}
 										value={field.value ?? ""}
 									>
 										<FormControl className="w-full">
@@ -386,9 +395,15 @@ function Transaction() {
 						/>
 						<DialogFooter>
 							<DialogClose asChild>
-								<Button variant="outline">Cancel</Button>
+								<Button variant="outline" disabled={mutation.isPending}>
+									Cancel
+								</Button>
 							</DialogClose>
-							<Button variant="outline" type="submit">
+							<Button
+								variant="outline"
+								type="submit"
+								disabled={mutation.isPending}
+							>
 								<Send className="-ms-1 text-brand" />
 								{mutation.isPending ? "Submitting..." : "Submit"}
 							</Button>

@@ -39,7 +39,6 @@ export default function RootLayout({
 				>
 					<Providers>{children}</Providers>
 					<Toaster />
-
 					<Analytics />
 				</ThemeProvider>
 			</body>

@@ -15,7 +15,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "../ui/skeleton";
 
 function AccountCards() {
-	const { data, isPending, isError } = useQuery({
+	const { data, isPending } = useQuery({
 		queryKey: ["accounts"],
 		queryFn: async () => {
 			const res = await axios.get("/api/accounts");

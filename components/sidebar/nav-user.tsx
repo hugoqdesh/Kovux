@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/sidebar";
 import { CircleUserRound, EllipsisVertical, House, LogOut } from "lucide-react";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 export function NavUser({
 	user,
@@ -28,6 +30,7 @@ export function NavUser({
 	};
 }) {
 	const { isMobile } = useSidebar();
+	const router = useRouter();
 
 	return (
 		<SidebarMenu>
@@ -60,7 +63,7 @@ export function NavUser({
 						<DropdownMenuGroup>
 							<DropdownMenuItem>
 								<CircleUserRound />
-								<Link href="/account/settings" className="w-full">
+								<Link href="/dashboard/settings" className="w-full">
 									Settings
 								</Link>
 							</DropdownMenuItem>
@@ -73,7 +76,17 @@ export function NavUser({
 							</Link>
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem>
+						<DropdownMenuItem
+							onClick={(e) =>
+								authClient.signOut({
+									fetchOptions: {
+										onSuccess: () => {
+											router.push("/");
+										},
+									},
+								})
+							}
+						>
 							<LogOut />
 							Log out
 						</DropdownMenuItem>
