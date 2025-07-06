@@ -8,7 +8,7 @@ export default function Header() {
 	return (
 		<nav className="flex items-center justify-between max-w-7xl mx-auto pt-4 px-6 2xl:px-0">
 			<Link href="/" className="flex items-center gap-1.5 group">
-				<Coins className="group-hover:rotate-12 transition duration-200" />
+				<Coins className="group-hover:rotate-12 transition duration-200 text-brand" />
 				<span className="font-semibold">Kovux</span>
 			</Link>
 
@@ -18,7 +18,6 @@ export default function Header() {
 						<Github />
 					</Button>
 				</Link>
-				<ModeToggle />
 			</div>
 		</nav>
 	);

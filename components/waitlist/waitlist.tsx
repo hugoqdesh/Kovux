@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { Mail, Send } from "lucide-react";
 import axios from "axios";
 import { z } from "zod";
+import Counter from "./counter";
 
 const emailSchema = z.object({
 	email: z.string().email("Please enter a valid email address"),
@@ -39,28 +40,28 @@ export default function Waitlist() {
 		}
 	}
 	return (
-		<form className="flex gap-2 mb-2">
-			<div className="relative">
-				<Input
-					type="email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					className="peer ps-9"
-					placeholder="Enter email"
-					required
-				/>
-				<div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
-					<Mail size={16} aria-hidden="true" />
+		<>
+			<form className="flex gap-2 mb-2">
+				<div className="relative">
+					<Input
+						type="email"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+						className="peer ps-9"
+						placeholder="Enter your email"
+						required
+					/>
+					<div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
+						<Mail size={16} aria-hidden="true" />
+					</div>
 				</div>
-			</div>
-			<Button
-				onClick={createWaitlistUser}
-				type="submit"
-				variant="outline"
-				size="icon"
-			>
-				<Send />
-			</Button>
-		</form>
+				<Button onClick={createWaitlistUser} type="submit" variant="outline">
+					<Send />
+					Join Waitlist
+				</Button>
+			</form>
+
+			<Counter />
+		</>
 	);
 }
