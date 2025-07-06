@@ -65,7 +65,7 @@ const formSchema = z.object({
 	type: z.string({
 		required_error: "Please select a type",
 	}),
-	note: z.string().max(50).optional(),
+	note: z.string().max(20).optional(),
 	category: z.string({
 		required_error: "Please select a category",
 	}),
@@ -85,6 +85,7 @@ function Transaction() {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["accounts"] });
+			queryClient.invalidateQueries({ queryKey: ["transaction"] });
 			toast.success("New transaction made", { richColors: true });
 			form.reset();
 		},
@@ -283,7 +284,7 @@ function Transaction() {
 											</SelectTrigger>
 										</FormControl>
 										<SelectContent>
-											<SelectItem value="food & drink">
+											<SelectItem value="Food & Drink">
 												<Wine
 													size={16}
 													aria-hidden="true"
@@ -291,7 +292,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Food & Drink</span>
 											</SelectItem>
-											<SelectItem value="shopping">
+											<SelectItem value="Shopping">
 												<ShoppingBag
 													size={16}
 													aria-hidden="true"
@@ -299,7 +300,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Shopping</span>
 											</SelectItem>
-											<SelectItem value="transport">
+											<SelectItem value="Transport">
 												<TrainFront
 													size={16}
 													aria-hidden="true"
@@ -307,7 +308,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Transport</span>
 											</SelectItem>
-											<SelectItem value="home">
+											<SelectItem value="Home">
 												<House
 													size={16}
 													aria-hidden="true"
@@ -315,7 +316,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Home</span>
 											</SelectItem>
-											<SelectItem value="bills & fees">
+											<SelectItem value="Bills & Fees">
 												<ReceiptText
 													size={16}
 													aria-hidden="true"
@@ -323,7 +324,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Bills & Fees</span>
 											</SelectItem>
-											<SelectItem value="entertainment">
+											<SelectItem value="Entertainment">
 												<Drama
 													size={16}
 													aria-hidden="true"
@@ -331,7 +332,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Entertainment</span>
 											</SelectItem>
-											<SelectItem value="travel">
+											<SelectItem value="Travel">
 												<Plane
 													size={16}
 													aria-hidden="true"
@@ -339,7 +340,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Travel</span>
 											</SelectItem>
-											<SelectItem value="healthcare">
+											<SelectItem value="Healthcare">
 												<Activity
 													size={16}
 													aria-hidden="true"
@@ -347,7 +348,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Healthcare</span>
 											</SelectItem>
-											<SelectItem value="education">
+											<SelectItem value="Education">
 												<LibraryBig
 													size={16}
 													aria-hidden="true"
@@ -355,7 +356,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Education</span>
 											</SelectItem>
-											<SelectItem value="groceries">
+											<SelectItem value="Groceries">
 												<Apple
 													size={16}
 													aria-hidden="true"
@@ -363,7 +364,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Groceries</span>
 											</SelectItem>
-											<SelectItem value="gifts">
+											<SelectItem value="Gifts">
 												<Gift
 													size={16}
 													aria-hidden="true"
@@ -379,7 +380,7 @@ function Transaction() {
 												/>
 												<span className="truncate">Beauty</span>
 											</SelectItem>
-											<SelectItem value="business">
+											<SelectItem value="Business">
 												<BriefcaseBusiness
 													size={16}
 													aria-hidden="true"
