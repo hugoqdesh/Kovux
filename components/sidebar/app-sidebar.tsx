@@ -51,11 +51,6 @@ const data = {
 
 	navBottom: [
 		{
-			title: "Help & Support",
-			url: "/help",
-			icon: HeartHandshake,
-		},
-		{
 			title: "Updates",
 			url: "/dashboard/updates",
 			icon: Mailbox,
