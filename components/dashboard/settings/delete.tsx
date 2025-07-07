@@ -10,13 +10,19 @@ import {
 } from "@/components/ui/card";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 function Delete() {
+	const router = useRouter();
+
 	const mutation = useMutation({
 		mutationFn: async () => {
 			const res = await axios.delete("/api/user");
 			return res.data;
+		},
+		onSuccess: () => {
+			router.push("/");
 		},
 	});
 
