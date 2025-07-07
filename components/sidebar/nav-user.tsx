@@ -48,10 +48,6 @@ export function NavUser() {
 							size="lg"
 							className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground mt-2"
 						>
-							<Avatar className="h-8 w-8 rounded-lg">
-								<AvatarImage src={data.image} alt={data.name} />
-								<AvatarFallback className="rounded-lg"></AvatarFallback>
-							</Avatar>
 							<div className="grid flex-1 text-left text-sm leading-tight">
 								<span className="truncate font-medium">{data.name}</span>
 								<span className="text-muted-foreground truncate text-xs">

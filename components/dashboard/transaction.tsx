@@ -17,7 +17,10 @@ import { z } from "zod";
 import {
 	Select,
 	SelectContent,
+	SelectGroup,
 	SelectItem,
+	SelectLabel,
+	SelectSeparator,
 	SelectTrigger,
 	SelectValue,
 } from "../ui/select";
@@ -29,20 +32,33 @@ import {
 	BanknoteArrowDown,
 	BanknoteArrowUp,
 	BriefcaseBusiness,
+	CarTaxiFront,
+	ChartNoAxesCombined,
 	CreditCard,
 	DollarSign,
 	Drama,
+	Dumbbell,
 	EyeClosed,
 	Gift,
+	Handshake,
+	HeartPulse,
 	House,
 	IdCard,
+	IdCardLanyard,
 	LibraryBig,
+	PawPrint,
 	PiggyBank,
 	Plane,
 	ReceiptText,
 	Send,
+	Shirt,
 	ShoppingBag,
+	ShoppingBasket,
+	ShoppingCart,
+	TicketMinus,
+	TicketPlus,
 	TrainFront,
+	UtilityPole,
 	Wine,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -284,110 +300,195 @@ function Transaction() {
 											</SelectTrigger>
 										</FormControl>
 										<SelectContent>
-											<SelectItem value="Food & Drink">
-												<Wine
-													size={16}
-													aria-hidden="true"
-													className="text-brand"
-												/>
-												<span className="truncate">Food & Drink</span>
-											</SelectItem>
-											<SelectItem value="Shopping">
-												<ShoppingBag
-													size={16}
-													aria-hidden="true"
-													className="text-brand"
-												/>
-												<span className="truncate">Shopping</span>
-											</SelectItem>
-											<SelectItem value="Transport">
-												<TrainFront
-													size={16}
-													aria-hidden="true"
-													className="text-brand"
-												/>
-												<span className="truncate">Transport</span>
-											</SelectItem>
-											<SelectItem value="Home">
-												<House
-													size={16}
-													aria-hidden="true"
-													className="text-brand"
-												/>
-												<span className="truncate">Home</span>
-											</SelectItem>
-											<SelectItem value="Bills & Fees">
-												<ReceiptText
-													size={16}
-													aria-hidden="true"
-													className="text-brand"
-												/>
-												<span className="truncate">Bills & Fees</span>
-											</SelectItem>
-											<SelectItem value="Entertainment">
-												<Drama
-													size={16}
-													aria-hidden="true"
-													className="text-brand"
-												/>
-												<span className="truncate">Entertainment</span>
-											</SelectItem>
-											<SelectItem value="Travel">
-												<Plane
-													size={16}
-													aria-hidden="true"
-													className="text-brand"
-												/>
-												<span className="truncate">Travel</span>
-											</SelectItem>
-											<SelectItem value="Healthcare">
-												<Activity
-													size={16}
-													aria-hidden="true"
-													className="text-brand"
-												/>
-												<span className="truncate">Healthcare</span>
-											</SelectItem>
-											<SelectItem value="Education">
-												<LibraryBig
-													size={16}
-													aria-hidden="true"
-													className="text-brand"
-												/>
-												<span className="truncate">Education</span>
-											</SelectItem>
-											<SelectItem value="Groceries">
-												<Apple
-													size={16}
-													aria-hidden="true"
-													className="text-brand"
-												/>
-												<span className="truncate">Groceries</span>
-											</SelectItem>
-											<SelectItem value="Gifts">
-												<Gift
-													size={16}
-													aria-hidden="true"
-													className="text-brand"
-												/>
-												<span className="truncate">Gifts</span>
-											</SelectItem>
-											<SelectItem value="beauty">
-												<EyeClosed
-													size={16}
-													aria-hidden="true"
-													className="text-brand"
-												/>
-												<span className="truncate">Beauty</span>
-											</SelectItem>
-											<SelectItem value="Business">
-												<BriefcaseBusiness
-													size={16}
-													aria-hidden="true"
-													className="text-brand"
-												/>
-												<span className="truncate">Business</span>
-											</SelectItem>
+											<SelectGroup>
+												<SelectLabel>Expenses</SelectLabel>
+												<SelectItem value="Rent">
+													<House
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Rent</span>
+												</SelectItem>
+
+												<SelectItem value="Utilities">
+													<UtilityPole
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Utilities</span>
+												</SelectItem>
+
+												<SelectItem value="Transport">
+													<CarTaxiFront
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Transport</span>
+												</SelectItem>
+
+												<SelectItem value="Groceries">
+													<ShoppingBasket
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Groceries</span>
+												</SelectItem>
+
+												<SelectItem value="Eating Out">
+													<Wine
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Eating Out</span>
+												</SelectItem>
+
+												<SelectItem value="Healthcare">
+													<HeartPulse
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Healthcare</span>
+												</SelectItem>
+
+												<SelectItem value="Beauty">
+													<EyeClosed
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Beauty</span>
+												</SelectItem>
+
+												<SelectItem value="Gym">
+													<Dumbbell
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Gym</span>
+												</SelectItem>
+
+												<SelectItem value="Clothes">
+													<Shirt
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Clothes</span>
+												</SelectItem>
+
+												<SelectItem value="Entertainment">
+													<Drama
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Entertainment</span>
+												</SelectItem>
+
+												<SelectItem value="Shopping">
+													<ShoppingCart
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Shopping</span>
+												</SelectItem>
+
+												<SelectItem value="Pets">
+													<PawPrint
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Pets</span>
+												</SelectItem>
+
+												<SelectItem value="Travel">
+													<Plane
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Travel</span>
+												</SelectItem>
+
+												<SelectItem value="Gifts">
+													<Gift
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Gifts</span>
+												</SelectItem>
+
+												<SelectItem value="Business & Work">
+													<BriefcaseBusiness
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Business & Work</span>
+												</SelectItem>
+
+												<SelectItem value="Miscellaneous">
+													<TicketMinus
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Miscellaneous</span>
+												</SelectItem>
+											</SelectGroup>
+											<SelectSeparator />
+
+											<SelectGroup>
+												<SelectLabel>Incomes</SelectLabel>
+
+												<SelectItem value="Employment">
+													<IdCardLanyard
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Employment</span>
+												</SelectItem>
+
+												<SelectItem value="Business & Freelance">
+													<Handshake
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Business & Freelance</span>
+												</SelectItem>
+
+												<SelectItem value="Investments & Returns">
+													<ChartNoAxesCombined
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">
+														Investments & Returns
+													</span>
+												</SelectItem>
+
+												<SelectItem value="Other income">
+													<TicketPlus
+														size={16}
+														aria-hidden="true"
+														className="text-brand"
+													/>
+													<span className="truncate">Other Income</span>
+												</SelectItem>
+											</SelectGroup>
 										</SelectContent>
 									</Select>
 									<FormMessage />
