@@ -57,7 +57,7 @@ const data = {
 		},
 		{
 			title: "Updates",
-			url: "/updates",
+			url: "/dashboard/updates",
 			icon: Mailbox,
 		},
 	],
