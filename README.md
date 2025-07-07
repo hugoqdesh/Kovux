@@ -6,32 +6,33 @@
 
 # Kovux
 
-An Open-Source Finance Management for your Future
+An Open-Source Solution to Financial Chaos
 
 ## What is Kovux?
 
-Kovux is an open-source finance management solution that gives users the power to **track**, **understand** and **control** their money through clean interfaces. Our goal is to simplify personal finance by removing the complexity and add useful features.
+Kovux is an open-source finance management solution for people who want to visual control of there money. No complexity, no ads or any privacy concerns.
 
 ## Why Kovux?
 
 Most finance applications today are either **overly complex**, **cluttered with ads**, or **missing key features**.
 Kovux is different:
 
-- **Open-Source** – No hidden agendas, fully transparent.
+- **Secure & Open-Source** – No hidden agendas, fully transparent.
 - **Clean & Minimal** - No clutter, no distractions, just your money data.
 - **Complete Overview** – Track everything in one place.
+- **Access Anywhere** - Manage finances from every device.
 - **Privacy Focused** - Your data stays secure and private.
-- **Customizable UI & Features** – Tailor your finance experience the way you want it.
+- **Smart Features** – Insight to help you make better decisions.
 
 ## Tech Stack
 
 Kovux is built with modern and reliable technologies:
 
 - **Frontend**: Next.js, React, TypeScript, TailwindCSS, Shadcn UI
-- **Backend**: Node.js, Drizzle ORM
+- **Backend**: Node.js, Prisma ORM
 - **Database**: MongoDB
 - **Authentication**: Better Auth
 
 ## Contribute
 
-Please refer to the [contributing guide](/CONTRIBUTING.md).
+We welcome contributions! Please refer to the [contributing guide](/CONTRIBUTING.md) for details.

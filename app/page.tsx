@@ -28,7 +28,7 @@ export default function Home() {
 
 				<Demo />
 
-				<footer className="bg-background border-b py-12">
+				<footer className="bg-background py-12">
 					<div className="mx-auto max-w-5xl px-6">
 						<span className="text-muted-foreground block text-center text-sm">
 							© {new Date().getFullYear()} Kovux, All rights reserved
