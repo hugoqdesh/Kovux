@@ -1,9 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { CreditCard, Layers2 } from "lucide-react";
-import { Badge } from "../ui/badge";
+import { Layers2 } from "lucide-react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "../ui/skeleton";
@@ -40,15 +38,10 @@ function BalanceCard() {
 			<CardContent className="flex flex-col gap-3 xl:mt-36">
 				<div className="flex gap-3">
 					<span className="text-4xl font-semibold">{formatAmount(total)}</span>
-					<div className="flex items-center gap-1 text-muted-foreground text-sm">
-						<Badge variant="outline" className="text-brand-green">
-							+0.87%
-						</Badge>
-					</div>
 				</div>
 				<p className="text-muted-foreground text-sm">
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-					repellat corporis natus porro quis voluptas.
+					Combined balance across all accounts. Track your spending patterns and
+					account growth over time.
 				</p>
 			</CardContent>
 		</Card>

@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import {
 	Card,
 	CardAction,
@@ -45,6 +44,17 @@ function AccountCards() {
 			currency: "USD",
 		}).format(amount);
 
+	const formatChange = (percentChange: number) => {
+		const isPositive = percentChange >= 0;
+		const sign = isPositive ? "+" : "";
+		const colorClass = isPositive ? "text-brand-green" : "text-brand-red";
+
+		return {
+			percentText: `${sign}${percentChange}%`,
+			colorClass,
+		};
+	};
+
 	return (
 		<>
 			<h2 className="font-semibold flex items-center gap-1.5">
@@ -59,9 +69,17 @@ function AccountCards() {
 							Cash
 						</CardTitle>
 						<CardAction className="text-sm flex items-center gap-1 text-muted-foreground">
-							<span className="text-brand-green">+$50</span>
-							<Badge variant="outline" className="text-brand-green">
-								+9.8%
+							<Badge
+								variant="outline"
+								className={
+									formatChange(data?.debitCardChange?.percentChange || 0)
+										.colorClass
+								}
+							>
+								{
+									formatChange(data?.debitCardChange?.percentChange || 0)
+										.percentText
+								}
 							</Badge>
 							from last month
 						</CardAction>
@@ -80,9 +98,17 @@ function AccountCards() {
 							Debit Card
 						</CardTitle>
 						<CardAction className="text-sm flex items-center gap-1 text-muted-foreground">
-							<span className="text-brand-green">+$50</span>
-							<Badge variant="outline" className="text-brand-green">
-								+9.8%
+							<Badge
+								variant="outline"
+								className={
+									formatChange(data?.debitCardChange?.percentChange || 0)
+										.colorClass
+								}
+							>
+								{
+									formatChange(data?.debitCardChange?.percentChange || 0)
+										.percentText
+								}
 							</Badge>
 							from last month
 						</CardAction>
@@ -101,9 +127,17 @@ function AccountCards() {
 							Credit Card
 						</CardTitle>
 						<CardAction className="text-sm flex items-center gap-1 text-muted-foreground">
-							<span className="text-brand-green">+$50</span>
-							<Badge variant="outline" className="text-brand-green">
-								+9.8%
+							<Badge
+								variant="outline"
+								className={
+									formatChange(data?.debitCardChange?.percentChange || 0)
+										.colorClass
+								}
+							>
+								{
+									formatChange(data?.debitCardChange?.percentChange || 0)
+										.percentText
+								}
 							</Badge>
 							from last month
 						</CardAction>
@@ -122,9 +156,17 @@ function AccountCards() {
 							Savings Account
 						</CardTitle>
 						<CardAction className="text-sm flex items-center gap-1 text-muted-foreground">
-							<span className="text-brand-green">+$50</span>
-							<Badge variant="outline" className="text-brand-green">
-								+9.8%
+							<Badge
+								variant="outline"
+								className={
+									formatChange(data?.debitCardChange?.percentChange || 0)
+										.colorClass
+								}
+							>
+								{
+									formatChange(data?.debitCardChange?.percentChange || 0)
+										.percentText
+								}
 							</Badge>
 							from last month
 						</CardAction>

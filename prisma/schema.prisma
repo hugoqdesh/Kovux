@@ -93,9 +93,11 @@ model FinancialTransaction {
 }
 
 model AccountBalance {
-  id     String        @id @default(cuid()) @map("_id")
-  method PaymentMethod
-  amount Float
+  id        String        @id @default(cuid()) @map("_id")
+  method    PaymentMethod
+  amount    Float
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)

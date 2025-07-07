@@ -51,11 +51,6 @@ const data = {
 
 	navBottom: [
 		{
-			title: "Feedback",
-			url: "/feedback",
-			icon: Send,
-		},
-		{
 			title: "Help & Support",
 			url: "/help",
 			icon: HeartHandshake,
