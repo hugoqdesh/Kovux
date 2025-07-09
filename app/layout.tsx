@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "./providers";
 
@@ -33,12 +32,11 @@ export default function RootLayout({
 			>
 				<ThemeProvider
 					attribute="class"
-					defaultTheme="dark"
+					defaultTheme="system"
 					enableSystem
 					disableTransitionOnChange
 				>
 					<Providers>{children}</Providers>
-					<Toaster />
 					<Analytics />
 				</ThemeProvider>
 			</body>

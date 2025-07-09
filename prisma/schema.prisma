@@ -70,21 +70,11 @@ model Verification {
   @@map("verification")
 }
 
-model WaitlistUser {
-  id        String   @id @default(cuid()) @map("_id")
-  email     String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
-
-  @@map("waitlist_users")
-}
-
 model FinancialTransaction {
   id        String          @id @default(cuid()) @map("_id")
   method    PaymentMethod
   amount    Float
   type      TransactionType
-  note      String?
   category  String
   createdAt DateTime        @default(now())
 
