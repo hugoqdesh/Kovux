@@ -16,6 +16,13 @@ export default function TotalBalance() {
 			return res.data;
 		},
 	});
+	const { data: user } = useQuery({
+		queryKey: ["user"],
+		queryFn: async () => {
+			const res = await axios.get("/api/user");
+			return res.data;
+		},
+	});
 
 	if (isPending) {
 		return (
@@ -30,11 +37,13 @@ export default function TotalBalance() {
 		);
 	}
 
-	const formatAmount = (amount: number) =>
-		new Intl.NumberFormat("en-US", {
+	const formatAmount = (amount: number) => {
+		const currency = user?.currency || "USD";
+		return new Intl.NumberFormat("en-US", {
 			style: "currency",
-			currency: "USD",
+			currency: currency,
 		}).format(amount);
+	};
 
 	const total =
 		data.cash + data.debitCard + data.creditCard + data.savingsAccount;
