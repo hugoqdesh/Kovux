@@ -21,7 +21,6 @@ import {
 	ChartNoAxesCombined,
 	CreditCard,
 	DollarSign,
-	HandCoins,
 	Handshake,
 	IdCard,
 	IdCardLanyard,
@@ -105,11 +104,11 @@ export default function IncomeTransaction() {
 										disabled={mutation.isPending}
 										value={field.value ?? ""}
 									/>
-									<div className="text-brand pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
+									<div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
 										<DollarSign
 											size={16}
 											aria-hidden="true"
-											className="opacity-60"
+											className="opacity-60 text-green-600 dark:text-green-400"
 										/>
 									</div>
 								</div>
@@ -132,17 +131,13 @@ export default function IncomeTransaction() {
 									disabled={mutation.isPending}
 									className="gird grid-cols-2"
 								>
-									<div className="border-input has-data-[state=checked]:border-primary/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
+									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
 											value="CASH"
 											id="CASH"
 											className="sr-only"
 										/>
-										<Banknote
-											className="opacity-60"
-											size={20}
-											aria-hidden="true"
-										/>
+										<Banknote size={20} aria-hidden="true" />
 										<Label
 											htmlFor="CASH"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
@@ -151,17 +146,13 @@ export default function IncomeTransaction() {
 										</Label>
 									</div>
 
-									<div className="border-input has-data-[state=checked]:border-primary/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
+									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
 											value="DEBIT_CARD"
 											id="DEBIT_CARD"
 											className="sr-only"
 										/>
-										<IdCard
-											className="opacity-60"
-											size={20}
-											aria-hidden="true"
-										/>
+										<IdCard size={20} aria-hidden="true" />
 										<Label
 											htmlFor="DEBIT_CARD"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
@@ -170,17 +161,13 @@ export default function IncomeTransaction() {
 										</Label>
 									</div>
 
-									<div className="border-input has-data-[state=checked]:border-primary/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
+									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
 											value="CREDIT_CARD"
 											id="CREDIT_CARD"
 											className="sr-only"
 										/>
-										<CreditCard
-											className="opacity-60"
-											size={20}
-											aria-hidden="true"
-										/>
+										<CreditCard size={20} aria-hidden="true" />
 										<Label
 											htmlFor="CREDIT_CARD"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
@@ -189,17 +176,13 @@ export default function IncomeTransaction() {
 										</Label>
 									</div>
 
-									<div className="border-input has-data-[state=checked]:border-primary/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
+									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
 											value="SAVINGS_ACCOUNT"
 											id="SAVINGS_ACCOUNT"
 											className="sr-only"
 										/>
-										<PiggyBank
-											className="opacity-60"
-											size={20}
-											aria-hidden="true"
-										/>
+										<PiggyBank size={20} aria-hidden="true" />
 										<Label
 											htmlFor="SAVINGS_ACCOUNT"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
@@ -227,17 +210,13 @@ export default function IncomeTransaction() {
 									disabled={mutation.isPending}
 									className="grid grid-cols-4"
 								>
-									<div className="border-input has-data-[state=checked]:border-primary/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
+									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
 											value="Business"
 											id="Business"
 											className="sr-only"
 										/>
-										<Building2
-											className="opacity-60"
-											size={20}
-											aria-hidden="true"
-										/>
+										<Building2 size={20} aria-hidden="true" />
 										<Label
 											htmlFor="Business"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
@@ -246,17 +225,13 @@ export default function IncomeTransaction() {
 										</Label>
 									</div>
 
-									<div className="border-input has-data-[state=checked]:border-primary/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
+									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
 											value="Employment"
 											id="Employment"
 											className="sr-only"
 										/>
-										<IdCardLanyard
-											className="opacity-60"
-											size={20}
-											aria-hidden="true"
-										/>
+										<IdCardLanyard size={20} aria-hidden="true" />
 										<Label
 											htmlFor="Employment"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
@@ -265,17 +240,13 @@ export default function IncomeTransaction() {
 										</Label>
 									</div>
 
-									<div className="border-input has-data-[state=checked]:border-primary/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
+									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
 											value="Freelance"
 											id="Freelance"
 											className="sr-only"
 										/>
-										<Handshake
-											className="opacity-60"
-											size={20}
-											aria-hidden="true"
-										/>
+										<Handshake size={20} aria-hidden="true" />
 										<Label
 											htmlFor="Freelance"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
@@ -284,17 +255,13 @@ export default function IncomeTransaction() {
 										</Label>
 									</div>
 
-									<div className="border-input has-data-[state=checked]:border-primary/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
+									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
 											value="Side Hustle"
 											id="Side Hustle"
 											className="sr-only"
 										/>
-										<Target
-											className="opacity-60"
-											size={20}
-											aria-hidden="true"
-										/>
+										<Target size={20} aria-hidden="true" />
 										<Label
 											htmlFor="Side Hustle"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
@@ -303,17 +270,13 @@ export default function IncomeTransaction() {
 										</Label>
 									</div>
 
-									<div className="border-input has-data-[state=checked]:border-primary/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
+									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
 											value="Benefits"
 											id="Benefits"
 											className="sr-only"
 										/>
-										<Landmark
-											className="opacity-60"
-											size={20}
-											aria-hidden="true"
-										/>
+										<Landmark size={20} aria-hidden="true" />
 										<Label
 											htmlFor="Benefits"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
@@ -322,17 +285,13 @@ export default function IncomeTransaction() {
 										</Label>
 									</div>
 
-									<div className="border-input has-data-[state=checked]:border-primary/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
+									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
 											value="Refunds"
 											id="Refunds"
 											className="sr-only"
 										/>
-										<TicketSlash
-											className="opacity-60"
-											size={20}
-											aria-hidden="true"
-										/>
+										<TicketSlash size={20} aria-hidden="true" />
 										<Label
 											htmlFor="Refunds"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
@@ -341,13 +300,13 @@ export default function IncomeTransaction() {
 										</Label>
 									</div>
 
-									<div className="border-input has-data-[state=checked]:border-primary/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
+									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
 											value="Bonuses"
 											id="Bonuses"
 											className="sr-only"
 										/>
-										<Tags className="opacity-60" size={20} aria-hidden="true" />
+										<Tags size={20} aria-hidden="true" />
 										<Label
 											htmlFor="Bonuses"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
@@ -356,17 +315,13 @@ export default function IncomeTransaction() {
 										</Label>
 									</div>
 
-									<div className="border-input has-data-[state=checked]:border-primary/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
+									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
 											value="Investments"
 											id="Investments"
 											className="sr-only"
 										/>
-										<ChartNoAxesCombined
-											className="opacity-60"
-											size={20}
-											aria-hidden="true"
-										/>
+										<ChartNoAxesCombined size={20} aria-hidden="true" />
 										<Label
 											htmlFor="Investments"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
@@ -375,17 +330,13 @@ export default function IncomeTransaction() {
 										</Label>
 									</div>
 
-									<div className="border-input has-data-[state=checked]:border-primary/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
+									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
 											value="Other"
 											id="Other"
 											className="sr-only"
 										/>
-										<TicketPlus
-											className="opacity-60"
-											size={20}
-											aria-hidden="true"
-										/>
+										<TicketPlus size={20} aria-hidden="true" />
 										<Label
 											htmlFor="Other"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
@@ -400,8 +351,8 @@ export default function IncomeTransaction() {
 					)}
 				/>
 
-				<Button variant="outline" type="submit" disabled={mutation.isPending}>
-					<Send className="-ms-1 text-brand opacity-60" />
+				<Button variant="green" type="submit" disabled={mutation.isPending}>
+					<Send className="-ms-1" />
 					{mutation.isPending ? "Submitting..." : "Submit"}
 				</Button>
 			</form>

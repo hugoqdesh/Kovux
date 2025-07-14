@@ -5,7 +5,7 @@ import axios from "axios";
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
-import { BanknoteArrowDown, BanknoteArrowUp, Wallet } from "lucide-react";
+import { Wallet } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 
 export default function TotalBalance() {
@@ -56,22 +56,16 @@ export default function TotalBalance() {
 
 			<div className="flex items-center gap-4 mt-4">
 				<Link href="dashboard/expense">
-					<Button variant="outline">
-						<BanknoteArrowDown className="-ms-1 text-brand opacity-60" />
-						Add Expense
-					</Button>
+					<Button variant="red">Add Expense</Button>
 				</Link>
 				<Link href="dashboard/income">
-					<Button variant="outline">
-						<BanknoteArrowUp className="-ms-1 text-brand opacity-60" />
-						Add Income
-					</Button>
+					<Button variant="green">Add Income</Button>
 				</Link>
 			</div>
 
 			<Link href="dashboard/accounts" className="mt-2">
-				<Button variant="outline">
-					<Wallet className="-ms-1 text-brand opacity-60" />
+				<Button variant="ghost">
+					<Wallet className="-ms-1" />
 					View Accounts
 				</Button>
 			</Link>

@@ -32,16 +32,24 @@ export default function AccountCards() {
 			currency: "USD",
 		}).format(amount);
 
+	const balanceColor = (amount: number) => {
+		if (amount < 0) return "text-red-500";
+		if (amount > 0) return "text-green-500";
+		return "text-primary";
+	};
+
 	return (
 		<div className="flex flex-col gap-4 items-center justify-center min-h-screen max-w-xl mx-auto px-2 md:px-0">
 			<Card className="w-full">
 				<CardHeader className="flex justify-between items-center">
 					<CardTitle className="flex items-center gap-1.5">
-						<Banknote size={20} className="opacity-60" />
+						<Banknote size={20} />
 						Cash
 					</CardTitle>
 					<CardAction>
-						<span className="font-semibold">{formatAmount(data.cash)}</span>
+						<span className={`font-semibold ${balanceColor(data.cash)}`}>
+							{formatAmount(data.cash)}
+						</span>
 					</CardAction>
 				</CardHeader>
 			</Card>
@@ -49,11 +57,11 @@ export default function AccountCards() {
 			<Card className="w-full">
 				<CardHeader className="flex justify-between items-center">
 					<CardTitle className="flex items-center gap-1.5">
-						<IdCard size={20} className="opacity-60" />
+						<IdCard size={20} />
 						Debit Card
 					</CardTitle>
 					<CardAction>
-						<span className="font-semibold">
+						<span className={`font-semibold ${balanceColor(data.debitCard)}`}>
 							{formatAmount(data.debitCard)}
 						</span>
 					</CardAction>
@@ -63,11 +71,11 @@ export default function AccountCards() {
 			<Card className="w-full">
 				<CardHeader className="flex justify-between items-center">
 					<CardTitle className="flex items-center gap-1.5">
-						<CreditCard size={20} className="opacity-60" />
+						<CreditCard size={20} />
 						Credit Card
 					</CardTitle>
 					<CardAction>
-						<span className="font-semibold">
+						<span className={`font-semibold ${balanceColor(data.creditCard)}`}>
 							{formatAmount(data.creditCard)}
 						</span>
 					</CardAction>
@@ -77,11 +85,13 @@ export default function AccountCards() {
 			<Card className="w-full">
 				<CardHeader className="flex justify-between items-center">
 					<CardTitle className="flex items-center gap-1.5">
-						<PiggyBank size={20} className="opacity-60" />
+						<PiggyBank size={20} />
 						Savings Account
 					</CardTitle>
 					<CardAction>
-						<span className="font-semibold">
+						<span
+							className={`font-semibold ${balanceColor(data.savingsAccount)}`}
+						>
 							{formatAmount(data.savingsAccount)}
 						</span>
 					</CardAction>
