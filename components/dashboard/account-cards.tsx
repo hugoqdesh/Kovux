@@ -3,8 +3,7 @@
 import { Card, CardAction, CardHeader, CardTitle } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Banknote, CreditCard, IdCard, PiggyBank, Undo2 } from "lucide-react";
-import BackBtn from "./back-btn";
+import { Banknote, CreditCard, IdCard, PiggyBank } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 
 export default function AccountCards() {
@@ -12,6 +11,13 @@ export default function AccountCards() {
 		queryKey: ["accounts"],
 		queryFn: async () => {
 			const res = await axios.get("/api/accounts");
+			return res.data;
+		},
+	});
+	const { data: user } = useQuery({
+		queryKey: ["user"],
+		queryFn: async () => {
+			const res = await axios.get("/api/user");
 			return res.data;
 		},
 	});
@@ -26,11 +32,13 @@ export default function AccountCards() {
 			</div>
 		);
 
-	const formatAmount = (amount: number) =>
-		new Intl.NumberFormat("en-US", {
+	const formatAmount = (amount: number) => {
+		const currency = user?.currency || "USD";
+		return new Intl.NumberFormat("en-US", {
 			style: "currency",
-			currency: "USD",
+			currency: currency,
 		}).format(amount);
+	};
 
 	const balanceColor = (amount: number) => {
 		if (amount < 0) return "text-red-500";
