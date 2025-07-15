@@ -8,15 +8,9 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart";
-
-const chartData = [
-	{ category: "Rent", amount: 186 },
-	{ category: "Clothes", amount: 305 },
-	{ category: "Pets", amount: 237 },
-	{ category: "Work", amount: 273 },
-	{ category: "Gifts", amount: 209 },
-	{ category: "Transport", amount: 214 },
-];
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { Skeleton } from "../ui/skeleton";
 
 const chartConfig = {
 	category: {
@@ -24,7 +18,45 @@ const chartConfig = {
 	},
 } satisfies ChartConfig;
 
-export function ChartRadarDefault() {
+export function ChartRadar() {
+	const { data, isPending } = useQuery({
+		queryKey: ["transactions"],
+		queryFn: async () => {
+			const res = await axios.get("/api/transaction");
+			return res.data;
+		},
+	});
+
+	if (isPending)
+		return (
+			<Card>
+				<CardHeader className="items-center pb-0 border-b">
+					<CardTitle>Category Breakdown</CardTitle>
+				</CardHeader>
+				<CardContent className="flex items-center justify-center h-64">
+					<Skeleton className="w-full h-full" />
+				</CardContent>
+			</Card>
+		);
+
+	const categoryTotals: { [key: string]: number } = {};
+
+	data?.forEach((group: any) => {
+		group.transactions.forEach((transaction: any) => {
+			if (transaction.type === "EXPENSE" && transaction.category) {
+				categoryTotals[transaction.category] =
+					(categoryTotals[transaction.category] || 0) + transaction.amount;
+			}
+		});
+	});
+
+	const chartData = Object.entries(categoryTotals).map(
+		([category, amount]) => ({
+			category,
+			amount,
+		})
+	);
+
 	return (
 		<Card>
 			<CardHeader className="items-center pb-0 border-b">

@@ -1,28 +1,16 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
+import { Bar, BarChart, XAxis } from "recharts";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
 	ChartConfig,
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart";
-
-const chartData = [
-	{ month: "January", income: 186, expense: 80 },
-	{ month: "February", income: 305, expense: 200 },
-	{ month: "March", income: 237, expense: 120 },
-	{ month: "April", income: 73, expense: 190 },
-	{ month: "May", income: 209, expense: 130 },
-	{ month: "June", income: 214, expense: 140 },
-];
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { Skeleton } from "../ui/skeleton";
 
 const chartConfig = {
 	income: {
@@ -33,7 +21,40 @@ const chartConfig = {
 	},
 } satisfies ChartConfig;
 
-export function ChartBarMultiple() {
+export function ChartBar() {
+	const { data, isPending } = useQuery({
+		queryKey: ["transactions"],
+		queryFn: async () => {
+			const res = await axios.get("/api/transaction");
+			return res.data;
+		},
+	});
+
+	if (isPending)
+		return (
+			<Card>
+				<CardHeader className="items-center pb-0 border-b">
+					<CardTitle>Income vs Expense</CardTitle>
+				</CardHeader>
+				<CardContent className="flex items-center justify-center h-64">
+					<Skeleton className="w-full h-full" />
+				</CardContent>
+			</Card>
+		);
+
+	const chartData =
+		data?.map((group: any) => ({
+			month: group.label,
+
+			income: group.transactions
+				.filter((transaction: any) => transaction.type === "INCOME")
+				.reduce((sum: number, transaction: any) => sum + transaction.amount, 0),
+
+			expense: group.transactions
+				.filter((transaction: any) => transaction.type === "EXPENSE")
+				.reduce((sum: number, transaction: any) => sum + transaction.amount, 0),
+		})) || [];
+
 	return (
 		<Card>
 			<CardHeader className="items-center pb-0 border-b">
