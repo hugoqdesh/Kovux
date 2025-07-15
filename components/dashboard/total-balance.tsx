@@ -5,7 +5,7 @@ import axios from "axios";
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
-import { Wallet } from "lucide-react";
+import { ArrowRightLeft, Wallet } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 
 export default function TotalBalance() {
@@ -53,7 +53,6 @@ export default function TotalBalance() {
 			<h1 className="text-7xl md:text-8xl font-semibold">
 				{formatAmount(total)}
 			</h1>
-
 			<div className="flex items-center gap-4 mt-4">
 				<Link href="dashboard/expense">
 					<Button variant="red">Add Expense</Button>
@@ -63,12 +62,21 @@ export default function TotalBalance() {
 				</Link>
 			</div>
 
-			<Link href="dashboard/accounts" className="mt-2">
-				<Button variant="ghost">
-					<Wallet className="-ms-1" />
-					View Accounts
-				</Button>
-			</Link>
+			<div className="flex items-center gap-4 mt-4">
+				<Link href="dashboard/accounts" className="mt-2">
+					<Button variant="ghost">
+						<Wallet className="-ms-1" />
+						Accounts
+					</Button>
+				</Link>
+
+				<Link href="dashboard/transactions" className="mt-2">
+					<Button variant="ghost">
+						<ArrowRightLeft className="-ms-1" />
+						Transactions
+					</Button>
+				</Link>
+			</div>
 		</section>
 	);
 }

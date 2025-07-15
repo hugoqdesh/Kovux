@@ -2,6 +2,61 @@ import { auth } from "@/auth";
 import prisma from "@/lib/db";
 import { NextResponse } from "next/server";
 
+export async function GET(req: Request) {
+	try {
+		const session = await auth.api.getSession({
+			headers: req.headers,
+		});
+
+		if (!session?.user?.id) {
+			return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+		}
+
+		const transactions = await prisma.financialTransaction.findMany({
+			where: {
+				userId: session.user.id,
+			},
+			orderBy: {
+				createdAt: "desc",
+			},
+		});
+
+		const grouped: Record<string, typeof transactions> = {};
+
+		for (const transaction of transactions) {
+			const date = new Date(transaction.createdAt);
+			const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+				2,
+				"0"
+			)}`;
+
+			if (!grouped[key]) grouped[key] = [];
+			grouped[key].push(transaction);
+		}
+
+		const result = Object.entries(grouped)
+			.sort(([a], [b]) => b.localeCompare(a))
+			.map(([monthKey, transaction]) => {
+				const [year, month] = monthKey.split("-");
+				const label = new Date(
+					Number(year),
+					Number(month) - 1
+				).toLocaleDateString("en-US", {
+					month: "long",
+					year: "numeric",
+				});
+				return { monthKey, label, transactions: transaction };
+			});
+
+		return NextResponse.json(result);
+	} catch (error) {
+		return NextResponse.json({
+			error: "Failed to get transactions",
+			status: 500,
+		});
+	}
+}
+
 export async function POST(req: Request) {
 	try {
 		const session = await auth.api.getSession({
