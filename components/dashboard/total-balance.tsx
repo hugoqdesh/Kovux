@@ -76,6 +76,13 @@ export default function TotalBalance() {
 						Transactions
 					</Button>
 				</Link>
+
+				<Link href="dashboard/analytics" className="mt-2">
+					<Button variant="ghost">
+						<ArrowRightLeft className="-ms-1" />
+						Analytics
+					</Button>
+				</Link>
 			</div>
 		</section>
 	);
