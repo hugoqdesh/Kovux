@@ -5,7 +5,6 @@ export default function Dashboard() {
 	return (
 		<>
 			<Header />
-
 			<main className="flex min-h-screen">
 				<TotalBalance />
 			</main>

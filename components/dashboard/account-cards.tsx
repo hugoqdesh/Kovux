@@ -14,6 +14,7 @@ export default function AccountCards() {
 			return res.data;
 		},
 	});
+
 	const { data: user } = useQuery({
 		queryKey: ["user"],
 		queryFn: async () => {

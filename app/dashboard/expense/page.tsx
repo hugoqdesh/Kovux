@@ -3,9 +3,8 @@ import ExpenseTransaction from "@/components/dashboard/expense-transaction";
 
 export default function Expense() {
 	return (
-		<main className="flex items-center min-h-screen max-w-2xl mx-auto">
+		<main className="flex items-center min-h-screen max-w-2xl mx-auto py-20">
 			<BackBtn />
-
 			<ExpenseTransaction />
 		</main>
 	);

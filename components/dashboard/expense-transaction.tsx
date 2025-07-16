@@ -20,7 +20,6 @@ import {
 	CreditCard,
 	DollarSign,
 	Drama,
-	Dumbbell,
 	EyeClosed,
 	Gift,
 	Guitar,
@@ -28,7 +27,6 @@ import {
 	House,
 	IdCard,
 	PawPrint,
-	PersonStanding,
 	PiggyBank,
 	Plane,
 	Send,
@@ -61,7 +59,6 @@ export default function ExpenseTransaction() {
 	});
 
 	const queryClient = useQueryClient();
-
 	const mutation = useMutation({
 		mutationFn: async (payload: any) => {
 			const res = await axios.post("/api/transaction", payload);
@@ -87,7 +84,6 @@ export default function ExpenseTransaction() {
 			category: values.category,
 			type: "EXPENSE",
 		};
-
 		mutation.mutate(payload);
 	};
 
@@ -281,16 +277,16 @@ export default function ExpenseTransaction() {
 
 									<div className="border-input has-data-[state=checked]:border-red-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
-											value="Eating Out"
-											id="Eating Out"
+											value="Dining"
+											id="Dining"
 											className="sr-only"
 										/>
 										<Wine size={20} aria-hidden="true" />
 										<Label
-											htmlFor="Eating Out"
+											htmlFor="Dining"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
 										>
-											Eating Out
+											Dining
 										</Label>
 									</div>
 
@@ -355,17 +351,13 @@ export default function ExpenseTransaction() {
 									</div>
 
 									<div className="border-input has-data-[state=checked]:border-red-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
-										<RadioGroupItem
-											value="Entertainment"
-											id="Entertainment"
-											className="sr-only"
-										/>
+										<RadioGroupItem value="Fun" id="Fun" className="sr-only" />
 										<Drama size={20} aria-hidden="true" />
 										<Label
-											htmlFor="Entertainment"
+											htmlFor="Fun"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
 										>
-											Entertainment
+											Fun
 										</Label>
 									</div>
 
@@ -446,16 +438,16 @@ export default function ExpenseTransaction() {
 
 									<div className="border-input has-data-[state=checked]:border-red-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
-											value="Miscellaneous"
-											id="Miscellaneous"
+											value="Misc"
+											id="Misc"
 											className="sr-only"
 										/>
 										<TicketMinus size={20} aria-hidden="true" />
 										<Label
-											htmlFor="Miscellaneous"
+											htmlFor="Misc"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
 										>
-											Miscellaneous
+											Misc
 										</Label>
 									</div>
 								</RadioGroup>

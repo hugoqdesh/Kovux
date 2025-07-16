@@ -37,22 +37,22 @@ const getIcon = (category: string) => {
 		utilities: UtilityPole,
 		transport: CarTaxiFront,
 		groceries: ShoppingBasket,
-		"eating out": Wine,
+		dining: Wine,
 		healthcare: HeartPulse,
 		hobbies: Guitar,
 		personal: EyeClosed,
 		clothes: Shirt,
-		entertainment: Drama,
+		fun: Drama,
 		shopping: ShoppingCart,
 		pets: PawPrint,
 		travel: Plane,
 		gifts: Gift,
 		work: BriefcaseBusiness,
-		miscellaneous: TicketMinus,
+		misc: TicketMinus,
 		business: Building2,
 		employment: IdCardLanyard,
 		freelance: Handshake,
-		"side hustle": Target,
+		hustle: Target,
 		benefits: Landmark,
 		refunds: TicketSlash,
 		bonuses: Tags,
@@ -65,13 +65,14 @@ const getIcon = (category: string) => {
 };
 
 export default function TransactionCards() {
-	const { data, isPending } = useQuery({
+	const { data, isPending, isLoading } = useQuery({
 		queryKey: ["accounts"],
 		queryFn: async () => {
 			const res = await axios.get("/api/transaction");
 			return res.data;
 		},
 	});
+
 	const { data: user } = useQuery({
 		queryKey: ["user"],
 		queryFn: async () => {
@@ -82,7 +83,7 @@ export default function TransactionCards() {
 
 	if (isPending)
 		return (
-			<div className="flex flex-col justify-center gap-2 items-center py-32 max-w-2xl mx-auto w-full">
+			<div className="flex flex-col justify-center gap-2 items-center py-20 max-w-2xl mx-auto w-full px-2 md:px-0">
 				<Skeleton className="h-[90px] w-full" />
 				<Skeleton className="h-[90px] w-full" />
 				<Skeleton className="h-[90px] w-full" />
@@ -99,42 +100,54 @@ export default function TransactionCards() {
 	};
 
 	return (
-		<div className="flex flex-col gap-2 w-full">
+		<div className="flex flex-col gap-2 w-full px-2 md:px-0">
 			{Array.isArray(data) &&
-				data?.map(({ label, transactions }: any) => (
-					<div key={label}>
-						<h2 className="text-lg font-medium mb-3">{label}</h2>
-						<div className="flex flex-col gap-2">
-							{transactions.map((transaction: any) => (
-								<Card className="w-full" key={transaction.id}>
-									<CardContent className="flex flex-row items-center justify-between">
-										<div className="flex flex-row items-center">
-											<div className="rounded border p-2.5">
-												{getIcon(transaction.category)}
-											</div>
-											<div className="flex flex-col ml-3">
-												<CardTitle>{transaction.category}</CardTitle>
-												<CardDescription>
-													{transaction.method.replace("_", " ").toLowerCase()}
-												</CardDescription>
-											</div>
-										</div>
-										<span
-											className={
-												transaction.type === "INCOME"
-													? "text-green-500"
-													: "text-red-500"
-											}
-										>
-											{transaction.type === "INCOME" ? "+" : "-"}
-											{formatAmount(transaction.amount)}
-										</span>
-									</CardContent>
-								</Card>
-							))}
+				data?.map(
+					({ label, transactions }: { label: string; transactions: any[] }) => (
+						<div key={label}>
+							<h2 className="text-lg font-medium mb-3">{label}</h2>
+							<div className="flex flex-col gap-2">
+								{transactions.map(
+									(transaction: {
+										id: string;
+										category: string;
+										method: string;
+										type: string;
+										amount: number;
+									}) => (
+										<Card className="w-full" key={transaction.id}>
+											<CardContent className="flex flex-row items-center justify-between">
+												<div className="flex flex-row items-center">
+													<div className="rounded border p-2.5">
+														{getIcon(transaction.category)}
+													</div>
+													<div className="flex flex-col ml-3">
+														<CardTitle>{transaction.category}</CardTitle>
+														<CardDescription>
+															{transaction.method
+																.replace("_", " ")
+																.toLowerCase()}
+														</CardDescription>
+													</div>
+												</div>
+												<span
+													className={
+														transaction.type === "INCOME"
+															? "text-green-500"
+															: "text-red-500"
+													}
+												>
+													{transaction.type === "INCOME" ? "+" : "-"}
+													{formatAmount(transaction.amount)}
+												</span>
+											</CardContent>
+										</Card>
+									)
+								)}
+							</div>
 						</div>
-					</div>
-				))}
+					)
+				)}
 		</div>
 	);
 }

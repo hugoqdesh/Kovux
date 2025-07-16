@@ -52,7 +52,6 @@ export default function IncomeTransaction() {
 	});
 
 	const queryClient = useQueryClient();
-
 	const mutation = useMutation({
 		mutationFn: async (payload: any) => {
 			const res = await axios.post("/api/transaction", payload);
@@ -78,7 +77,6 @@ export default function IncomeTransaction() {
 			category: values.category,
 			type: "INCOME",
 		};
-
 		mutation.mutate(payload);
 	};
 
@@ -257,16 +255,16 @@ export default function IncomeTransaction() {
 
 									<div className="border-input has-data-[state=checked]:border-green-400/60 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border px-2 py-3 text-center shadow-xs transition-[color,box-shadow] outline-none">
 										<RadioGroupItem
-											value="Side Hustle"
-											id="Side Hustle"
+											value="Hustle"
+											id="Hustle"
 											className="sr-only"
 										/>
 										<Target size={20} aria-hidden="true" />
 										<Label
-											htmlFor="Side Hustle"
+											htmlFor="Hustle"
 											className="text-foreground cursor-pointer text-xs leading-none font-medium after:absolute after:inset-0"
 										>
-											Side Hustle
+											Hustle
 										</Label>
 									</div>
 

@@ -3,9 +3,8 @@ import IncomeTransaction from "@/components/dashboard/income-transaction";
 
 export default function Income() {
 	return (
-		<main className="flex items-center min-h-screen max-w-2xl mx-auto">
+		<main className="flex items-center min-h-screen max-w-2xl mx-auto py-20">
 			<BackBtn />
-
 			<IncomeTransaction />
 		</main>
 	);

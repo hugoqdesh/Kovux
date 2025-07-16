@@ -5,7 +5,6 @@ export default function Accounts() {
 	return (
 		<main>
 			<BackBtn />
-
 			<AccountCards />
 		</main>
 	);

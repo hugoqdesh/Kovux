@@ -16,6 +16,7 @@ export default function TotalBalance() {
 			return res.data;
 		},
 	});
+
 	const { data: user } = useQuery({
 		queryKey: ["user"],
 		queryFn: async () => {
@@ -27,12 +28,16 @@ export default function TotalBalance() {
 	if (isPending) {
 		return (
 			<div className="flex flex-col gap-2 items-center justify-center mx-auto">
-				<Skeleton className="h-[100px] w-[400px]" />
+				<Skeleton className="h-[100px] w-[350px] md:w-[400px]" />
 				<div className="flex items-center gap-4 mt-2">
 					<Skeleton className="h-[35px] w-[130px]" />
 					<Skeleton className="h-[35px] w-[130px]" />
 				</div>
-				<Skeleton className="h-[35px] w-[130px] mt-2" />
+				<div className="flex items-center gap-4 mt-2">
+					<Skeleton className="h-[35px] w-[100px] md:w-[130px]" />
+					<Skeleton className="h-[35px] w-[100px] md:w-[130px]" />
+					<Skeleton className="h-[35px] w-[100px] md:w-[130px]" />
+				</div>
 			</div>
 		);
 	}
@@ -50,7 +55,7 @@ export default function TotalBalance() {
 
 	return (
 		<section className="flex flex-col gap-2 items-center justify-center mx-auto">
-			<h1 className="text-7xl md:text-8xl font-semibold">
+			<h1 className="text-7xl md:text-8xl font-semibold select-none">
 				{formatAmount(total)}
 			</h1>
 			<div className="flex items-center gap-4 mt-4">

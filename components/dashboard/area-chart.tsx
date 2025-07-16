@@ -1,18 +1,10 @@
 "use client";
 
 import { Area, AreaChart, XAxis } from "recharts";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
 	ChartConfig,
 	ChartContainer,
-	ChartLegend,
-	ChartLegendContent,
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart";
@@ -59,14 +51,14 @@ export function ChartArea() {
 
 	const dailyBalanceData = () => {
 		const allTransactions = transactions
-			.flatMap((group: any) => group.transactions)
+			.flatMap((group: { transactions: any[] }) => group.transactions)
 			.sort(
-				(a: any, b: any) =>
+				(a: { createdAt: string }, b: { createdAt: string }) =>
 					new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
 			);
 
 		const transactionsByDate = allTransactions.reduce(
-			(acc: any, transaction: any) => {
+			(acc: any, transaction: { createdAt: string }) => {
 				const date = transaction.createdAt.split("T")[0];
 				(acc[date] = acc[date] || []).push(transaction);
 				return acc;
@@ -123,7 +115,7 @@ export function ChartArea() {
 				<CardTitle>Balance Overview</CardTitle>
 				<Select value={timeRange} onValueChange={setTimeRange}>
 					<SelectTrigger
-						className="hidden w-[160px] sm:ml-auto sm:flex"
+						className="w-[160px] ml-auto"
 						aria-label="Select a value"
 					>
 						<SelectValue placeholder="Last 3 months" />

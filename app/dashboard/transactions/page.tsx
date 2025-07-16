@@ -5,7 +5,7 @@ import TransactionCards from "@/components/dashboard/transaction-cards";
 
 export default function Transactions() {
 	return (
-		<main className="flex flex-col justify-center gap-6 items-center py-32 max-w-2xl mx-auto">
+		<main className="flex flex-col justify-center gap-6 items-center py-20 max-w-2xl mx-auto">
 			<BackBtn />
 			<TransactionCards />
 		</main>

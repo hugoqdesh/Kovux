@@ -10,12 +10,7 @@ export default function Home() {
 				Better Decisions
 			</h1>
 			<p className="text-muted-foreground">Being developed, so stay tuned!</p>
-
 			<div className="flex items-center gap-4">
-				{/* <Link href="https://x.com/hugoqdesh" target="_blank">
-					<Button variant="outline">View X for more info</Button>
-				</Link> */}
-
 				<Link href="https://github.com/hugoqdesh/kovux" target="_blank">
 					<Button variant="outline">
 						<Github />
