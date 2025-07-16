@@ -29,8 +29,8 @@ import axios from "axios";
 import { Skeleton } from "../ui/skeleton";
 
 const chartConfig = {
-	amount: {
-		label: "Amount",
+	balance: {
+		label: "balance",
 	},
 } satisfies ChartConfig;
 
@@ -49,7 +49,7 @@ export function ChartArea() {
 		return (
 			<Card>
 				<CardHeader className="items-center pb-0 border-b">
-					<CardTitle>Total Balance</CardTitle>
+					<CardTitle>Balance Overview</CardTitle>
 				</CardHeader>
 				<CardContent className="flex items-center justify-center h-64">
 					<Skeleton className="w-full h-full" />
@@ -93,7 +93,7 @@ export function ChartArea() {
 						: -transaction.amount;
 			});
 
-			dailyData.push({ date: dateStr, amount: runningBalance });
+			dailyData.push({ date: dateStr, balance: runningBalance });
 		}
 
 		return dailyData;
@@ -120,7 +120,7 @@ export function ChartArea() {
 	return (
 		<Card>
 			<CardHeader className="flex items-center border-b pb-0">
-				<CardTitle>Total Balance</CardTitle>
+				<CardTitle>Balance Overview</CardTitle>
 				<Select value={timeRange} onValueChange={setTimeRange}>
 					<SelectTrigger
 						className="hidden w-[160px] sm:ml-auto sm:flex"
@@ -143,12 +143,12 @@ export function ChartArea() {
 							<linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
 								<stop
 									offset="5%"
-									stopColor="var(--color-blue-600)"
+									stopColor="var(--color-blue-700)"
 									stopOpacity={0.8}
 								/>
 								<stop
 									offset="95%"
-									stopColor="var(--color-blue-600)"
+									stopColor="var(--color-blue-700)"
 									stopOpacity={0.1}
 								/>
 							</linearGradient>
@@ -182,10 +182,10 @@ export function ChartArea() {
 							}
 						/>
 						<Area
-							dataKey="amount"
+							dataKey="balance"
 							type="linear"
 							fill="url(#fill)"
-							stroke="var(--color-blue-600)"
+							stroke="var(--color-blue-700)"
 						/>
 					</AreaChart>
 				</ChartContainer>

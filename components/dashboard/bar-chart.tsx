@@ -14,10 +14,10 @@ import { Skeleton } from "../ui/skeleton";
 
 const chartConfig = {
 	income: {
-		label: "Income",
+		label: "income",
 	},
 	expense: {
-		label: "Expense",
+		label: "expense",
 	},
 } satisfies ChartConfig;
 
@@ -74,8 +74,8 @@ export function ChartBar() {
 							cursor={false}
 							content={<ChartTooltipContent indicator="dot" />}
 						/>
-						<Bar dataKey="income" fill="var(--color-green-600)" radius={4} />
-						<Bar dataKey="expense" fill="var(--color-red-600)" radius={4} />
+						<Bar dataKey="income" fill="var(--color-green-700)" radius={4} />
+						<Bar dataKey="expense" fill="var(--color-red-700)" radius={4} />
 					</BarChart>
 				</ChartContainer>
 			</CardContent>

@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import {
+	Blend,
 	BriefcaseBusiness,
 	Building2,
 	CarTaxiFront,
@@ -60,7 +61,7 @@ const getIcon = (category: string) => {
 	};
 
 	const Icon = icons[category.toLowerCase()];
-	return <Icon />;
+	return Icon ? <Icon /> : <Blend />;
 };
 
 export default function TransactionCards() {
@@ -89,11 +90,6 @@ export default function TransactionCards() {
 			</div>
 		);
 
-	// fixes a error | leave this here for now
-	if (!Array.isArray(data)) {
-		return <div>No transactions found.</div>;
-	}
-
 	const formatAmount = (amount: number) => {
 		const currency = user?.currency || "USD";
 		return new Intl.NumberFormat("en-US", {
@@ -104,40 +100,41 @@ export default function TransactionCards() {
 
 	return (
 		<div className="flex flex-col gap-2 w-full">
-			{data.map(({ label, transactions }: any) => (
-				<div key={label}>
-					<h2 className="text-lg font-medium mb-3">{label}</h2>
-					<div className="flex flex-col gap-2">
-						{transactions.map((transaction: any) => (
-							<Card className="w-full" key={transaction.id}>
-								<CardContent className="flex flex-row items-center justify-between">
-									<div className="flex flex-row items-center">
-										<div className="rounded border p-2.5">
-											{getIcon(transaction.category)}
+			{Array.isArray(data) &&
+				data?.map(({ label, transactions }: any) => (
+					<div key={label}>
+						<h2 className="text-lg font-medium mb-3">{label}</h2>
+						<div className="flex flex-col gap-2">
+							{transactions.map((transaction: any) => (
+								<Card className="w-full" key={transaction.id}>
+									<CardContent className="flex flex-row items-center justify-between">
+										<div className="flex flex-row items-center">
+											<div className="rounded border p-2.5">
+												{getIcon(transaction.category)}
+											</div>
+											<div className="flex flex-col ml-3">
+												<CardTitle>{transaction.category}</CardTitle>
+												<CardDescription>
+													{transaction.method.replace("_", " ").toLowerCase()}
+												</CardDescription>
+											</div>
 										</div>
-										<div className="flex flex-col ml-3">
-											<CardTitle>{transaction.category}</CardTitle>
-											<CardDescription>
-												{transaction.method.replace("_", " ").toLowerCase()}
-											</CardDescription>
-										</div>
-									</div>
-									<span
-										className={
-											transaction.type === "INCOME"
-												? "text-green-500"
-												: "text-red-500"
-										}
-									>
-										{transaction.type === "INCOME" ? "+" : "-"}
-										{formatAmount(transaction.amount)}
-									</span>
-								</CardContent>
-							</Card>
-						))}
+										<span
+											className={
+												transaction.type === "INCOME"
+													? "text-green-500"
+													: "text-red-500"
+											}
+										>
+											{transaction.type === "INCOME" ? "+" : "-"}
+											{formatAmount(transaction.amount)}
+										</span>
+									</CardContent>
+								</Card>
+							))}
+						</div>
 					</div>
-				</div>
-			))}
+				))}
 		</div>
 	);
 }

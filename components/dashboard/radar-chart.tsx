@@ -14,7 +14,7 @@ import { Skeleton } from "../ui/skeleton";
 
 const chartConfig = {
 	category: {
-		label: "Category",
+		label: "category",
 	},
 } satisfies ChartConfig;
 
@@ -50,12 +50,10 @@ export function ChartRadar() {
 		});
 	});
 
-	const chartData = Object.entries(categoryTotals).map(
-		([category, amount]) => ({
-			category,
-			amount,
-		})
-	);
+	const chartData = Object.entries(categoryTotals).map(([category, spent]) => ({
+		category,
+		spent,
+	}));
 
 	return (
 		<Card>
@@ -69,8 +67,8 @@ export function ChartRadar() {
 						<PolarAngleAxis dataKey="category" />
 						<PolarGrid />
 						<Radar
-							dataKey="amount"
-							fill="var(--color-blue-600)"
+							dataKey="spent"
+							fill="var(--color-blue-700)"
 							fillOpacity={0.6}
 						/>
 					</RadarChart>
