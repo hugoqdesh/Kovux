@@ -14,11 +14,11 @@ Kovux is a clean, modern finance tracker that puts you in control of your financ
 
 ## Tech Stack
 
-- **Next.js** – ReactJS Framework that everyone and their mother knows
-- **TailwindCSS** – Utility-first styling
-- **MongoDB** – Flexible, persistent NoSQL database
-- **Prisma** – TypeScript-first ORM
-- **better-auth** – Authentication framework for TypeScript
+- **Next.js** – React framework for production applications
+- **TailwindCSS** – Utility-first CSS framework
+- **MongoDB** – Document-based NoSQL database
+- **Prisma** – Type-safe database ORM
+- **better-auth** – TypeScript authentication solution
 
 ## Getting Started
 
